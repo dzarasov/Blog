@@ -1,0 +1,47 @@
+<div class="container-fluid">
+
+	<img class="largei" src="/uploads/{{idpost.imageS}}">
+
+</div>
+
+           
+
+<div class="container-fluid">
+  <div class="col-xs-3">
+                <div class="facebookicon" fb-like="myModel.Url"></div>
+            </div> 
+		<div class="jumbotron">
+			   	{{ idpost.textE }}
+  		</div>
+
+<div class="row">
+  		<div ng-repeat="n in newD">
+  			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <img class="smalliForBlogPage" ng-click="toggleModal(n)" id="{{$index+1}}" src="/uploads/{{n}}">     
+  			</div>			
+  		</div>
+</div>      
+
+
+
+        <modal title="Login form" visible="showModal">
+          <img class="mediumForModal" src="/uploads/{{imagett}}">
+        </modal>    
+
+
+
+
+		 <div maps mapscode="mapcode" ng-show="mapcode" ng-model="mapcode"></div>
+  		
+
+
+</div>
+
+
+  		<div>
+  				<div class="videoDiv" my-youtube code="code" ng-show="code" ng-model="show"></div>
+  		</div>
+
+
+
+

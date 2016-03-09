@@ -1,0 +1,28 @@
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						Blog Data <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.textE">
+
+						Path for image <input type="text" class="form-control input-lg text-center" placeholder="Path" ng-model="formData.imageS">
+
+						Path for image collage <input type="text" class="form-control input-lg text-center" placeholder="Path" ng-model="formData.imageBucket">
+
+						Path  for video <input type="text" class="form-control input-lg text-center" placeholder="Add youtube url code" ng-model="formData.videoUrl">
+
+						Add lat/lon for the maps <input type="text" class="form-control input-lg text-center" placeholder="Add lat/lon to add it to the map" ng-model="formData.latlon">		
+
+
+						Password <input type="text" class="form-control input-lg text-center" placeholder="Dont try to hack my blog, I will find and kick your ass" ng-model="formData.passw">
+
+
+
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createDataForBlog()">Add</button>
+				</form>
+			</div>
+		</div>

@@ -1,0 +1,226 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="blogger">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>USA - view from a corner</title>
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+
+	<!-- SCROLLS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- load 
+  bootstrap -->
+	<style>
+
+/*#gmaps {
+    width: 450px;
+    height: 450px;
+}
+*/
+
+.navbar-default{
+  margin-bottom: 30px;
+  background-color: grey;
+}
+
+#map {
+    height:220px;
+    width:400px;
+    border-radius:25px;
+}
+
+h1 {
+    font-size: 45px;
+    color: white;
+    text-shadow:
+    -1px -1px 0 grey,  
+     3px -1px 0 grey,
+    -1px 1px 0 grey,
+     3px 1px 0 grey;
+  }
+
+  .herotext{
+    color: white;
+  }
+
+    .justAClass{
+      width: 50%;
+      height: 50%;
+    }
+
+    .justAClassA{
+      margin: 15px 15px 15px 15px;
+    }
+
+    .pan{
+      word-wrap: break-word;
+    }
+
+  .smalli{
+    width: 100%;
+    height: 100%; 
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+    .smalliForBlogPage{
+    width: 300px;
+    height: 200px;
+    padding: 0;
+    margin: 5px 5px 5px 5px;
+    position: relative;
+    float: left;
+    border:2px solid #fff; 
+    box-shadow: 10px 10px 5px #ccc; 
+    -moz-box-shadow: 10px 10px 5px #ccc; 
+    -webkit-box-shadow: 10px 10px 5px #ccc; 
+    -khtml-box-shadow: 10px 10px 5px #ccc;
+    border-radius:25px; 
+  }
+
+  .mediumForModal{
+    width: 100%;
+    height: 100%;
+  }
+
+  .smalliForBlogPage:hover { 
+    -moz-box-shadow: 0 0 10px #ccc; 
+    -webkit-box-shadow: 0 0 10px #ccc; 
+    box-shadow: 0 0 10px #ccc; 
+    } 
+
+
+  .largei{
+
+    margin: 10px 10px 10px 10px;
+    width: 90%;
+    height: 90%;
+  }
+
+.bg{
+      width: 800px;
+      height: 800px;
+}
+
+  .closemodal{
+    font-weight: 800;
+    margin: 50px 50px 50px 50px;
+    margin-left: 900px;
+  }
+
+.videoDiv{
+  margin: 15px 15px 15px 15px;
+}
+
+.facebookicon{
+  padding-top: 10px;
+}
+
+.hero{
+  height: 50%;
+  width: 80%;
+  border-radius: 2%;
+}
+
+.secondheader{
+  font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+  font-size: 25px;
+}
+
+.containerforherosecondtext{
+  margin: 50px 50px 50px 50px;
+}
+
+p{
+  font-family: Papyrus, fantasy;
+  font-size: 20px;
+}
+
+.navbar-default .navbar-nav>li>a{
+  color: white;
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.navbar-nav > li > a {padding-top:20px !important; padding-bottom:20px !important;}
+.navbar {min-height:40px !important}
+
+
+/*
+.intro-header  {
+
+    height: 400px;
+    width: 70%;
+    background: url(./uploads/cover.png) no-repeat scroll top left;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+*/
+
+
+
+
+
+	</style>
+
+	<!-- SPELLS -->
+	<script src="https://code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnNPvmh3kurNdAmVugcFMK165i7LRpLM"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script src="./angularlike.js"></script>
+  <!--
+  <script src="https//maps.google.com/maps/api/js"></script>
+  <script src="https//rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
+  -->
+
+	<!-- load 
+	angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+<!--<body ng-controller="mainController"> -->
+<body>
+
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>    
+                                            
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li>
+              <a ui-sref="blog" class="navbarcss">JUDO Blog</a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+
+<div ui-view></div>
+
+
+
+</body>
+</html>

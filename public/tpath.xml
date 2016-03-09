@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.sixdays.truckerpath">
+    <uses-feature android:glEsVersion="0x20000" android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <permission android:name="com.sixdays.truckerpath.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.sixdays.truckerpath.permission.C2D_MESSAGE"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher_blue_shadow" android:label="@string/app_name" android:name="com.sixdays.truckerpath.application.TruckerPathApplication" android:theme="@style/AppTheme">
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="@string/map_api_key"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/facebook_app_name"/>
+        <uses-library android:name="com.google.android.maps"/>
+        <activity android:name="com.mixpanel.android.surveys.SurveyActivity"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout" android:label="@string/app_name" android:name="com.facebook.FacebookActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="orientation" android:label="@string/app_name" android:launchMode="standard" android:name="com.sixdays.truckerpath.view.base.MainActivity" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation" android:label="@string/title_activity_details" android:name="com.sixdays.truckerpath.view.details.DetailsActivity" android:theme="@style/Theme.Truckerpath">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/point_details_host" android:scheme="@string/truckerpath_scheme"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation" android:label="@string/title_activity_show_on_the_map" android:name="com.sixdays.truckerpath.view.details.showonmap.ShowOnTheMapActivity" android:theme="@style/Theme.Truckerpath"/>
+        <activity android:configChanges="orientation" android:label="@string/title_activity_status_history" android:name="com.sixdays.truckerpath.view.details.weighstation.history.HistoryStatusActivity" android:theme="@style/Theme.Truckerpath">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/ws_history_host" android:scheme="@string/truckerpath_scheme"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation" android:label="@string/title_activity_status_history" android:name="com.sixdays.truckerpath.view.details.truckstop.history.TruckStopStatusHistoryActivity" android:theme="@style/Theme.Truckerpath">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/ts_history_host" android:scheme="@string/truckerpath_scheme"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_signals" android:name="com.sixdays.truckerpath.view.signals.SignalsActivity"/>
+        <activity android:label="@string/app_name" android:name="com.facebook.LoginActivity"/>
+        <activity android:label="@string/title_activity_about" android:name="com.sixdays.truckerpath.view.about.AboutActivity"/>
+        <activity android:label="@string/app_name" android:launchMode="singleTop" android:name="com.parse.ui.ParseLoginActivity"/>
+        <service android:name="com.parse.PushService"/>
+        <receiver android:name="com.parse.ParseBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.parse.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.sixdays.truckerpath"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.sixdays.truckerpath.parseservice.parsepush.MyParsePushReceiver">
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE"/>
+                <action android:name="com.parse.push.intent.DELETE"/>
+                <action android:name="com.parse.push.intent.OPEN"/>
+                <action android:name="com.sixdays.truckerpath.NEW_FT_OK"/>
+                <action android:name="com.sixdays.truckerpath.NEW_FT_CANCEL"/>
+                <action android:name="com.sixdays.truckerpath.TL_PROMO"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.parse.push.notification_icon" android:resource="@drawable/ic_launcher_blue_shadow"/>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
+        <receiver android:exported="true" android:name="com.appsflyer.MultipleInstallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.gms.analytics.CampaignTrackingReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.fiksu.asotracking.InstallTracking">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="FiksuDisableReceiverCheck" android:value="true"/>
+        <service android:exported="false" android:name="com.sixdays.truckerpath.utils.location.region.LocationUpdateService"/>
+        <activity android:label="@string/title_activity_truckloads_guide" android:name="com.sixdays.truckerpath.view.truckloads.TruckloadsGuideActivity" android:parentActivityName="com.sixdays.truckerpath.view.base.MainActivity" android:theme="@style/Theme.Truckerpath.Transparent.NoActionBar"/>
+        <activity android:configChanges="locale|orientation" android:label="@string/hs__conversation_header" android:name="com.helpshift.HSConversation" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="orientation" android:name="com.helpshift.HSQuestionsList" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="orientation" android:hardwareAccelerated="true" android:label="@string/hs__question_header" android:name="com.helpshift.HSQuestion" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="orientation" android:hardwareAccelerated="true" android:name="com.helpshift.HSSection" android:theme="@style/Helpshift.Theme.Activity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="orientation" android:hardwareAccelerated="true" android:label="@string/hs__help_header" android:name="com.helpshift.HSFaqs" android:theme="@style/Helpshift.Theme.Activity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="orientation" android:name="com.helpshift.HSReview" android:theme="@style/Helpshift.Theme.Dialog"/>
+        <activity android:configChanges="orientation" android:name="com.helpshift.ScreenshotPreviewActivity" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="orientation" android:name="com.helpshift.SearchResultActivity" android:theme="@style/Helpshift.Theme.Activity"/>
+        <service android:label="Helpshift Service" android:name="com.helpshift.HSService"/>
+        <service android:label="Helpshift Service" android:name="com.helpshift.HSRetryService"/>
+    </application>
+</manifest>
